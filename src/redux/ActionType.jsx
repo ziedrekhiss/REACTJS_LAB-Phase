@@ -1,0 +1,4 @@
+export const ADD_PATIENT = "ADD_PATIENT"
+export const DELETE_PATIENT = "DELETE_PATIENT"
+export const EDIT_PATIENT = "EDIT_PATIENT"
+export const SEARCH_PATIENT = "SEARCH_PATIENT"
