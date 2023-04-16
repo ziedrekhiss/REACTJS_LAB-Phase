@@ -28,7 +28,6 @@ export default function EditPatient({formNumber}) {
     const handleSubmit = event => {
         event.preventDefault();
         setShow(false);
-        console.log(updatedPatient)
         dispatch(editPatient({formNumber:formNumber, firstName:updatedPatient.firstName, lastName:updatedPatient.lastName, age:updatedPatient.age ,tel:updatedPatient.tel, address:updatedPatient.address, profession:updatedPatient.profession, observation:updatedPatient.observation }))
       }
 

@@ -1,4 +1,4 @@
-import {ADD_PATIENT, DELETE_PATIENT, EDIT_PATIENT, SEARCH_PATIENT} from "./ActionType";
+import {ADD_PATIENT, DELETE_PATIENT, EDIT_PATIENT, SEARCH_PATIENT, NEW_CONSULTATION} from "./ActionType";
 
 const initialState = {
   patients: []
@@ -7,6 +7,7 @@ const initialState = {
 const patientReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_PATIENT:
+     
       return { ...state, patients: [...state.patients, action.payload] };
     
     case DELETE_PATIENT :
@@ -24,6 +25,11 @@ const patientReducer = (state = initialState, action) => {
         return patient.patients.firstName.toLowerCase().includes(searchTerm) || patient.patients.lastName.toLowerCase().includes(searchTerm) || patient.patients.tel.toLowerCase().includes(searchTerm);
       });
       return {...state, patients:findPerson}
+      
+    case NEW_CONSULTATION:
+      console.log(action.payload)
+      // const editedConsultation= state.patients.map(el=>el.patients.key===action.payload.formNumber? { ...el, consultation: action.payload } : el);
+      return{ ...state, patients:{...state.patients,...action.payload} };
       
     default:
       return state;

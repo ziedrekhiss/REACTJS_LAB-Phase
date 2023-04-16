@@ -1,4 +1,4 @@
-import {ADD_PATIENT, DELETE_PATIENT, EDIT_PATIENT, SEARCH_PATIENT} from "./ActionType"
+import {ADD_PATIENT, DELETE_PATIENT, EDIT_PATIENT, SEARCH_PATIENT, NEW_CONSULTATION} from "./ActionType"
   
 
   export const addPatient = (payload)=>{
@@ -26,5 +26,12 @@ import {ADD_PATIENT, DELETE_PATIENT, EDIT_PATIENT, SEARCH_PATIENT} from "./Actio
     return{
       type:SEARCH_PATIENT,
       payload,
+    };
+  };
+
+  export const NewConsultation = ( payload)=>{
+    return{
+        type:NEW_CONSULTATION,
+        payload,
     };
   };

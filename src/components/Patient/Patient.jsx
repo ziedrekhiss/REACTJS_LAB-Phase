@@ -7,13 +7,14 @@ import { deletePatient} from '../../redux/Actions'
 import EditPatient from './EditPatient';
 import SeeMore from './SeeMore';
 
-export default function Patient({formNumber, firstName, lastName, tel, age, profession, address, observation}) {
+export default function Patient({formNumber, firstName, lastName, tel, age, profession, address, observation, consultations}) {
     const [isShown, setIsShown] = useState(false);
     const handleShow=()=>setIsShown(!isShown)
     const dispatch = useDispatch();
     const handleDelete = () => {
         dispatch(deletePatient(formNumber))
     }
+    
 
     return (
         <div>
@@ -37,7 +38,7 @@ export default function Patient({formNumber, firstName, lastName, tel, age, prof
                 </tbody>
             </Table>
             {isShown?
-                <SeeMore age={age} profession={profession} address={address} observation={observation}/>: null}
+                <SeeMore  age={age} profession={profession} address={address} observation={observation} />: null}
         </div>
     )
 }

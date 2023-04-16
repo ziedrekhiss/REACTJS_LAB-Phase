@@ -1,4 +1,4 @@
-import React ,{useState} from 'react';
+import React ,{useEffect, useState} from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
@@ -7,23 +7,27 @@ import { addPatient } from '../../redux/Actions';
 
 export default function AddPatient() {
     const [patientData, setPatientData] = useState(
-      {formNumber:"", firstName:"", lastName:"", age:"",tel:"", address:"", profession:"", observation:""}
+      {formNumber:0, firstName:"", lastName:"", age:"",tel:"", address:"", profession:"", observation:""}
     );
     const [id, setId]= useState(0)
     
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
+    useEffect(() => {
+      setId(id+1);
+    }, [show])
     const handleShow = () => {
+      
       setShow(true)
-      const newId = id + 1;
-      setId(newId);
-      setPatientData(prevState => {
-          const newPatientData = {
-              ...prevState
-          };
-          newPatientData.formNumber = newId.toString();
-          return newPatientData;
-      })
+      // const newId = id + 1;
+      // setPatientData(prevState => {
+      //     const newPatientData = {
+      //         ...prevState
+      //     };
+      //     newPatientData.formNumber = newId.toString();
+      //     return newPatientData;
+      // })
+      setPatientData({...patientData,formNumber:id})
     };
 
     const dispatch = useDispatch();
@@ -36,7 +40,7 @@ export default function AddPatient() {
       event.preventDefault();
       setShow(false);
       dispatch(
-        addPatient({patients:patientData})
+        addPatient(patientData)
       )
     }
 
@@ -56,7 +60,7 @@ export default function AddPatient() {
             <div style={{display:'flex', justifyContent:'space-between' }}>
               <Form.Group className="mb-3">
                 <Form.Label >N° de Fiche</Form.Label>
-                <Form.Control name='formNumber' defaultValue={patientData.formNumber}/>
+                <Form.Control name='formNumber' defaultValue={patientData?.formNumber}/>
                 <Form.Label >Nom</Form.Label>
                 <Form.Control name='firstName' type="text" onChange={handleChange} value={patientData.firstName} />
                 <Form.Label>Prenom</Form.Label>

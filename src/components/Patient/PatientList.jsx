@@ -5,13 +5,13 @@ import AddPatient from './AddPatient'
 import SearchBar from './SearchBar'
 import {SlPeople} from 'react-icons/sl'
 import Table from 'react-bootstrap/Table';
-import SeeMore from './SeeMore'
 
 export default function PatientList() {
 
     const patientList = useSelector((state) => state)
-    console.log(patientList)
-    var patients = patientList.patients;
+    let patients = patientList.patients;
+    console.log('patients',patients)
+    
     return (
         <div>
             <div
@@ -42,18 +42,18 @@ export default function PatientList() {
             </Table>
 
             {
-                patients
+                patients.length
                     ? patients.map((patient, id) => (
                         <Patient
                             key={id}
-                            formNumber={patient.patients.formNumber}
-                            firstName={patient.patients.firstName}
-                            lastName={patient.patients.lastName}
-                            tel={patient.patients.tel}
-                            age={patient.patients.age}
-                            profession={patient.patients.profession} 
-                            address={patient.patients.address} 
-                            observation={patient.patients.observation}
+                            formNumber={patient.formNumber}
+                            firstName={patient.firstName}
+                            lastName={patient.lastName}
+                            tel={patient.tel}
+                            age={patient.age}
+                            profession={patient.profession} 
+                            address={patient.address} 
+                            observation={patient.observation}
                             />    
                     ))
                     : null
