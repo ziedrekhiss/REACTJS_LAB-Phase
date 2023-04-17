@@ -7,7 +7,7 @@ import { deletePatient} from '../../redux/Actions'
 import EditPatient from './EditPatient';
 import SeeMore from './SeeMore';
 
-export default function Patient({formNumber, firstName, lastName, tel, age, profession, address, observation, consultations}) {
+export default function Patient({formNumber, firstName, lastName, tel, age, profession, address, observation, consultation}) {
     const [isShown, setIsShown] = useState(false);
     const handleShow=()=>setIsShown(!isShown)
     const dispatch = useDispatch();
@@ -29,7 +29,7 @@ export default function Patient({formNumber, firstName, lastName, tel, age, prof
                     <td className='col-3'>
                         <div style={{display:'flex',justifyContent:'space-between', alignItems:'center', maxWidth:'200px'}}>
                             <button style={{background:'none', maxHeight:'15px'}}  onClick={() => {handleShow()}} ><CgDetailsMore size={25} color='green'/></button>
-                            <div style={{background:'none', width:'25px', maxHeight:'15px', marginLeft:'0', marginRight:'15px'}}><EditPatient formNumber={formNumber}/></div>
+                            <div style={{background:'none', width:'25px', maxHeight:'15px', marginLeft:'0', marginRight:'15px'}}><EditPatient formNumber={formNumber} firstName={firstName} lastName={lastName} tel={tel} age={age} profession={profession} address={address} observation={observation}/></div>
                             <button style={{background:'none', maxHeight:'15px'}} ><MdAddAPhoto size={25} color='blue'/></button>
                             <button style={{background:'none', maxHeight:'15px'}} onClick={() => {handleDelete()}} ><MdDelete size={25} color='red'/></button>
                         </div> 
@@ -38,7 +38,7 @@ export default function Patient({formNumber, firstName, lastName, tel, age, prof
                 </tbody>
             </Table>
             {isShown?
-                <SeeMore  age={age} profession={profession} address={address} observation={observation} />: null}
+                <SeeMore formNumber={formNumber} age={age} profession={profession} address={address} observation={observation} consultation={consultation}/>: null}
         </div>
     )
 }

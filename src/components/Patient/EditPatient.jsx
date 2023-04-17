@@ -2,17 +2,19 @@ import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {editPatient } from '../../redux/Actions';
 import {MdEdit} from 'react-icons/md'
 
 
-export default function EditPatient({formNumber}) {
+export default function EditPatient({formNumber, firstName, lastName, tel, age, profession, address, observation}) {
 
     const dispatch = useDispatch();
 
+    const list = useSelector((state) => state)
+    
     const [updatedPatient, setUpdatedPatient] = useState(
-        {firstName:"", lastName:"", age:"",tel:"", address:"", profession:"", observation:""}
+        {firstName, lastName, tel, age, profession, address, observation}
     ) 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);

@@ -2,7 +2,9 @@ import React from 'react';
 import Table from 'react-bootstrap/Table';
 import AddConsultation from './AddConsultation'
 
-export default function SeeMore({key, age, profession, address, observation}) {
+export default function SeeMore({formNumber, age, profession, address, observation, consultation}) {
+
+    
     return (
         <div>
             <Table striped="striped" bordered="bordered" hover="hover">
@@ -22,7 +24,29 @@ export default function SeeMore({key, age, profession, address, observation}) {
                     </tr>
                 </tbody>
             </Table>
-            <AddConsultation key={key}/>
+            <AddConsultation formNumber={formNumber}/>
+
+            <ul>
+            {consultation.map((consultation, index) => (
+                <Table key={index} striped="striped" bordered="bordered" hover="hover">
+                    <tbody>
+                        <tr>
+                            <td style={{display:'flex', justifyContent:'space-between'}}>
+                                <h6 className='col-1'>Date:</h6> <p className='col-3' style={{marginLeft:'10px'}}>{consultation.date}</p> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style={{display:'flex', justifyContent:'space-between'}}>
+                                <h6 className='col-3'>Acte:</h6>
+                                <p className='col-5'>
+                                    {consultation.act}</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </Table>
+            ))}
+            </ul>
+
         </div>
     )
 }

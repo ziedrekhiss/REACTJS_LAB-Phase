@@ -7,26 +7,16 @@ import { addPatient } from '../../redux/Actions';
 
 export default function AddPatient() {
     const [patientData, setPatientData] = useState(
-      {formNumber:0, firstName:"", lastName:"", age:"",tel:"", address:"", profession:"", observation:""}
+      {formNumber:0, firstName:"", lastName:"", age:"",tel:"", address:"", profession:"", observation:"",consultation: []}
     );
-    const [id, setId]= useState(0)
+    const [id, setId]= useState(1)
     
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-    useEffect(() => {
-      setId(id+1);
-    }, [show])
+
     const handleShow = () => {
-      
       setShow(true)
-      // const newId = id + 1;
-      // setPatientData(prevState => {
-      //     const newPatientData = {
-      //         ...prevState
-      //     };
-      //     newPatientData.formNumber = newId.toString();
-      //     return newPatientData;
-      // })
+      setId(prevId => prevId + 1);
       setPatientData({...patientData,formNumber:id})
     };
 
@@ -42,6 +32,7 @@ export default function AddPatient() {
       dispatch(
         addPatient(patientData)
       )
+      setPatientData({formNumber:0, firstName:"", lastName:"", age:"",tel:"", address:"", profession:"", observation:"", consultation: []})
     }
 
 

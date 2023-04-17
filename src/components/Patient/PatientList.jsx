@@ -12,6 +12,7 @@ export default function PatientList() {
     let patients = patientList.patients;
     console.log('patients',patients)
     
+    
     return (
         <div>
             <div
@@ -54,6 +55,7 @@ export default function PatientList() {
                             profession={patient.profession} 
                             address={patient.address} 
                             observation={patient.observation}
+                            consultation={patient.consultation}
                             />    
                     ))
                     : null

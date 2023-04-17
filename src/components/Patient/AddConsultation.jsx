@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import { useDispatch} from 'react-redux';
 import { NewConsultation } from '../../redux/Actions';
 
-export default function AddConsultation() {
+export default function AddConsultation({formNumber}) {
 
     const [consultation, setConsultation] = useState({date:"", act:""})
     const [show, setShow] = useState(false);
@@ -22,13 +22,14 @@ export default function AddConsultation() {
       event.preventDefault();
       setShow(false);
       dispatch(
-        NewConsultation({consultation})
+        NewConsultation({formNumber:formNumber, consultation})
       )
+      setConsultation({date:"", act:""})
     }
   
     return (
     <div>
-      <Button variant="primary" onClick={handleShow}>
+      <Button variant="primary" onClick={handleShow} style={{width:'150px', fontSize:'13px'}}>
         Ajouter Consultation
       </Button>
 
